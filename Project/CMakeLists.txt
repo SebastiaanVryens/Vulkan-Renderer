@@ -29,9 +29,8 @@ file(GLOB_RECURSE MODEL_FILES
         "${MODELS_SOURCE_DIR}/*.json"
 )
 
-# Define the sources for the executable
-set(SOURCES
-    "main.cpp"
+# Define the sources for the engine
+set(ENGINE_SOURCES
     "AppBase.cpp"
     "Window.cpp"
     "Pipeline.cpp"
@@ -45,12 +44,17 @@ set(SOURCES
     "Descriptors.cpp"
 )
 
-# Create the executable
-add_executable(${PROJECT_NAME} ${SOURCES} ${GLSL_SOURCE_FILES}        
-    "Camera.h" "SDL2-2.28.3/SDL_keyboard.h" "Pipeline.h" 
-    "Model.h" "GameObject.h" "Renderer.h" "Renderer.cpp" 
-    "Systems/SimpleRenderSystem.cpp" "Input.h"
+# The engine is a static library so the game and the unit tests can both link it
+add_library(EngineCore STATIC ${ENGINE_SOURCES}
+    "Camera.h" "SDL2-2.28.3/SDL_keyboard.h" "Pipeline.h"
+    "Model.h" "GameObject.h" "Renderer.h" "Input.h"
     "tiny_obj_loader.h" "Utils.h" "stb_image.h"  "Buffer.h"  "FrameInfo.h" "Descriptors.h" "Systems/PointLightSystem.h" "json.hpp" "SceneLoader.h")
+
+target_include_directories(EngineCore PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+target_link_libraries(EngineCore PUBLIC ${Vulkan_LIBRARIES} glfw)
+
+# Create the executable
+add_executable(${PROJECT_NAME} "main.cpp" ${GLSL_SOURCE_FILES})
 
     file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/Models DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 
@@ -66,5 +70,4 @@ add_custom_target(CopyOBJFiles ALL
 add_dependencies(${PROJECT_NAME} CopyOBJFiles)
 
 # Link libraries
-target_include_directories(${PROJECT_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
-target_link_libraries(${PROJECT_NAME} PRIVATE ${Vulkan_LIBRARIES} glfw)
+target_link_libraries(${PROJECT_NAME} PRIVATE EngineCore)

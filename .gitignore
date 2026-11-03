@@ -1,0 +1,8 @@
+# CMake build folders (VS Code's CMake Tools uses build/, Visual Studio uses out/)
+build/
+out/
+
+# Visual Studio and VS Code local settings
+.vs/
+.vscode/
+CMakeUserPresets.json

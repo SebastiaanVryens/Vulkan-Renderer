@@ -9,7 +9,7 @@
 class Window
 {
 public:
-	Window( const int w, const int h, std::string& name );
+	Window( const int w, const int h, const std::string& name );
 	~Window();
 
 	Window( const Window& ) = delete;

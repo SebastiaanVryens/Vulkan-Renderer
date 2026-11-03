@@ -29,7 +29,43 @@ find_package(Vulkan REQUIRED)
 # Include Directories
 include_directories(${Vulkan_INCLUDE_DIRS})
 
+# GLM is an optional part of the Vulkan SDK, so download it if the SDK doesn't have it
+find_path(GLM_INCLUDE_DIR glm/glm.hpp HINTS ${Vulkan_INCLUDE_DIRS})
+if(NOT GLM_INCLUDE_DIR)
+  FetchContent_Declare(
+    glm
+    GIT_REPOSITORY https://github.com/g-truc/glm.git
+    GIT_TAG        1.0.1
+    GIT_SHALLOW TRUE
+  )
+  option(GLM_BUILD_LIBRARY "Build dynamic/static library" OFF)
+
+  FetchContent_MakeAvailable(glm)
+  include_directories(${glm_SOURCE_DIR})
+endif()
+
 add_subdirectory(Project)
+
+# Unit tests (GoogleTest + CTest)
+option(BUILD_TESTS "Build the unit tests" ON)
+
+if(BUILD_TESTS)
+  FetchContent_Declare(
+    googletest
+    GIT_REPOSITORY https://github.com/google/googletest.git
+    GIT_TAG        v1.17.0
+    GIT_SHALLOW TRUE
+  )
+  # Link the same C runtime as the engine on MSVC, otherwise the linker fails
+  option(gtest_force_shared_crt "Use shared (DLL) run-time lib even when Google Test is built as static lib." ON)
+  option(BUILD_GMOCK "Builds the googlemock subproject" OFF)
+  option(INSTALL_GTEST "Enable installation of googletest." OFF)
+
+  FetchContent_MakeAvailable(googletest)
+
+  enable_testing()
+  add_subdirectory(Tests)
+endif()
 
 
 # If using validation layers, copy the required JSON files (optional)

@@ -102,7 +102,7 @@ public:
 		SetViewDirection( pos, target - pos, up );
 	}
 
-	const glm::mat4& GetViewProjectionMatrix()
+	glm::mat4 GetViewProjectionMatrix() const
 	{
 		return m_ProjectionMatrix * m_ViewMatrix;
 	}

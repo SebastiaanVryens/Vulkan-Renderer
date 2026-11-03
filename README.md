@@ -1,5 +1,7 @@
 # Vulkan Rendering Engine
 
+[![Build and test](https://github.com/SebastiaanVryens/Vulkan-Rendering/actions/workflows/ci.yml/badge.svg)](https://github.com/SebastiaanVryens/Vulkan-Rendering/actions/workflows/ci.yml)
+
 A 3D engine I wrote from scratch in **C++** using the **Vulkan** graphics API. It loads a 65k-triangle island map and lets you walk around it in first person. The player has gravity, can jump, and collides with the ground. A moving sun lights the scene, and it all runs at 120+ FPS.
 
 I built it on my own in two weeks (May–June 2024) as a graphics programming course project.
@@ -14,6 +16,7 @@ I built it on my own in two weeks (May–June 2024) as a graphics programming co
 - **Data-driven scenes.** Scenes are JSON files that list which models to load, where to place them and how big they are. You can change a level without recompiling.
 - **Stress-test scene.** One JSON setting fills the world with a grid of 2,000 cubes, each with a random size and rotation, to test how the renderer copes with many objects.
 - **Simple physics.** A cube falls and bounces on the terrain. It uses the same gravity and collision code as the player.
+- **Unit tests and CI.** GoogleTest tests check the camera math, object transforms, model loading, and the player's gravity and collision. On every push and pull request, GitHub Actions builds the engine, compiles the shaders and runs the tests.
 
 | Moving sun lighting | Stress test with many objects |
 | --- | --- |
@@ -48,6 +51,7 @@ More technical details:
 | Model loading | tinyobjloader |
 | Scene files | nlohmann/json |
 | Build system | CMake |
+| Testing | GoogleTest, CTest, GitHub Actions |
 
 ## Controls
 
@@ -63,11 +67,11 @@ More technical details:
 ## Building and running
 
 **You'll need:**
-- The [Vulkan SDK](https://vulkan.lunarg.com/) with the GLM headers component. It also includes `glslc`, the shader compiler.
-- CMake 3.10 or newer
+- The [Vulkan SDK](https://vulkan.lunarg.com/). It includes `glslc`, the shader compiler.
+- CMake 3.16 or newer
 - A C++17 compiler (I developed it with Visual Studio on Windows)
 
-CMake downloads GLFW automatically.
+CMake downloads GLFW and GoogleTest automatically. It also downloads GLM if your Vulkan SDK doesn't include it.
 
 ```bash
 git clone https://github.com/SebastiaanVryens/Vulkan-Rendering.git
@@ -79,6 +83,26 @@ cmake --build build
 Run `VulkanLab01` with `build/Project` as the working directory, because that's where the compiled shaders and models are copied.
 
 **Switching scenes:** the island scene loads by default. To run the stress test, change `Models/Scene1.json` to `Models/Scene2.json` in `AppBase::LoadGameObjects()` ([Project/AppBase.cpp](Project/AppBase.cpp)).
+
+## Running the tests
+
+The tests are built together with the engine. Run them with CTest:
+
+```bash
+ctest --test-dir build -C Debug --output-on-failure
+```
+
+The tests only cover code that runs on the CPU, so they don't need a GPU. The GitHub Actions build machines don't have one.
+
+| Test file | What it checks |
+| --- | --- |
+| `CameraTests.cpp` | The projection matrices map the scene to Vulkan's screen and depth range. The view matrix is the exact inverse of the camera's transform. |
+| `TransformTests.cpp` | Object matrices apply scale, rotation and position in the right order. Normals stay correct when an object is stretched along one axis. |
+| `PhysicsTests.cpp` | The player falls with gravity, lands at the right height, jumps, and bounces. |
+| `ModelLoadingTests.cpp` | Loading an `.obj` merges duplicate vertices, flips the Y axis for Vulkan, and reads the JSON model settings. |
+| `UtilsTests.cpp` | The hash function used to find duplicate vertices. |
+
+To build without the tests, configure with `-DBUILD_TESTS=OFF`.
 
 ## Project structure
 
@@ -95,6 +119,8 @@ Run `VulkanLab01` with `build/Project` as the working directory, because that's 
 | `Input.h` | Player controller: movement, gravity and collision |
 | `SceneLoader.h` | Reads the JSON scene files |
 | `Shaders/` | GLSL vertex and fragment shaders |
+| `Tests/` | GoogleTest unit tests, built as a separate executable against the engine library |
+| `.github/workflows/ci.yml` | The CI pipeline: builds and tests the engine on every push |
 
 ## What I'd improve next
 

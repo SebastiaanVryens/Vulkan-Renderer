@@ -5,7 +5,7 @@
 #include <GLFW/glfw3native.h>
 #include <glm/glm.hpp>
 
-Window::Window( const int w, const int h, std::string& name ) : m_Width{ w }, m_Height{ h }, m_WindowName{ name }
+Window::Window( const int w, const int h, const std::string& name ) : m_Width{ w }, m_Height{ h }, m_WindowName{ name }
 {
 	InitWindow();
 }
