@@ -1,3 +1,6 @@
+#pragma once
+#include <cstddef>
+#include <functional>
 
 // Date: 2021-09-26
 // from: https://stackoverflow.com/a/57595105

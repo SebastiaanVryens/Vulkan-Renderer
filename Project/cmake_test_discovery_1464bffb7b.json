@@ -1,0 +1,240 @@
+{
+  "tests": 35,
+  "name": "AllTests",
+  "testsuites": [
+    {
+      "name": "CameraPerspective",
+      "tests": 3,
+      "testsuite": [
+        {
+          "name": "MatchesGlmLeftHandedZeroToOne",
+          "file": "C:\\Users\\vryen\\Desktop\\My Games\\Vulkan-Rendering\\Tests\\CameraTests.cpp",
+          "line": 38
+        },
+        {
+          "name": "NearAndFarPlanesMapToDepthZeroAndOne",
+          "file": "C:\\Users\\vryen\\Desktop\\My Games\\Vulkan-Rendering\\Tests\\CameraTests.cpp",
+          "line": 46
+        },
+        {
+          "name": "EdgesOfFieldOfViewMapToEdgesOfScreen",
+          "file": "C:\\Users\\vryen\\Desktop\\My Games\\Vulkan-Rendering\\Tests\\CameraTests.cpp",
+          "line": 54
+        }
+      ]
+    },
+    {
+      "name": "CameraOrthographic",
+      "tests": 1,
+      "testsuite": [
+        {
+          "name": "MapsBoxToClipVolume",
+          "file": "C:\\Users\\vryen\\Desktop\\My Games\\Vulkan-Rendering\\Tests\\CameraTests.cpp",
+          "line": 67
+        }
+      ]
+    },
+    {
+      "name": "CameraView",
+      "tests": 5,
+      "testsuite": [
+        {
+          "name": "CameraPositionMapsToOrigin",
+          "file": "C:\\Users\\vryen\\Desktop\\My Games\\Vulkan-Rendering\\Tests\\CameraTests.cpp",
+          "line": 82
+        },
+        {
+          "name": "TargetIsStraightAhead",
+          "file": "C:\\Users\\vryen\\Desktop\\My Games\\Vulkan-Rendering\\Tests\\CameraTests.cpp",
+          "line": 91
+        },
+        {
+          "name": "DoesNotStretchOrMirrorTheWorld",
+          "file": "C:\\Users\\vryen\\Desktop\\My Games\\Vulkan-Rendering\\Tests\\CameraTests.cpp",
+          "line": 102
+        },
+        {
+          "name": "ZeroRotationOnlyTranslates",
+          "file": "C:\\Users\\vryen\\Desktop\\My Games\\Vulkan-Rendering\\Tests\\CameraTests.cpp",
+          "line": 113
+        },
+        {
+          "name": "YawLooksTheWayThePlayerWalks",
+          "file": "C:\\Users\\vryen\\Desktop\\My Games\\Vulkan-Rendering\\Tests\\CameraTests.cpp",
+          "line": 122
+        }
+      ]
+    },
+    {
+      "name": "CameraViewProjection",
+      "tests": 1,
+      "testsuite": [
+        {
+          "name": "IsProjectionTimesView",
+          "file": "C:\\Users\\vryen\\Desktop\\My Games\\Vulkan-Rendering\\Tests\\CameraTests.cpp",
+          "line": 135
+        }
+      ]
+    },
+    {
+      "name": "TransformComponent",
+      "tests": 4,
+      "testsuite": [
+        {
+          "name": "DefaultIsIdentity",
+          "file": "C:\\Users\\vryen\\Desktop\\My Games\\Vulkan-Rendering\\Tests\\TransformTests.cpp",
+          "line": 18
+        },
+        {
+          "name": "MatchesTranslateRotateScaleInYXZOrder",
+          "file": "C:\\Users\\vryen\\Desktop\\My Games\\Vulkan-Rendering\\Tests\\TransformTests.cpp",
+          "line": 25
+        },
+        {
+          "name": "NormalMatrixIsInverseTransposeOfModelMatrix",
+          "file": "C:\\Users\\vryen\\Desktop\\My Games\\Vulkan-Rendering\\Tests\\TransformTests.cpp",
+          "line": 41
+        },
+        {
+          "name": "NormalsStayPerpendicularUnderNonUniformScale",
+          "file": "C:\\Users\\vryen\\Desktop\\My Games\\Vulkan-Rendering\\Tests\\TransformTests.cpp",
+          "line": 50
+        }
+      ]
+    },
+    {
+      "name": "PhysicsTest",
+      "tests": 6,
+      "testsuite": [
+        {
+          "name": "FallsWithGravity",
+          "file": "C:\\Users\\vryen\\Desktop\\My Games\\Vulkan-Rendering\\Tests\\PhysicsTests.cpp",
+          "line": 72
+        },
+        {
+          "name": "LandsOnFloorAtPlayerHeight",
+          "file": "C:\\Users\\vryen\\Desktop\\My Games\\Vulkan-Rendering\\Tests\\PhysicsTests.cpp",
+          "line": 83
+        },
+        {
+          "name": "StaysOnFloorOnceLanded",
+          "file": "C:\\Users\\vryen\\Desktop\\My Games\\Vulkan-Rendering\\Tests\\PhysicsTests.cpp",
+          "line": 90
+        },
+        {
+          "name": "FlyingIgnoresGravity",
+          "file": "C:\\Users\\vryen\\Desktop\\My Games\\Vulkan-Rendering\\Tests\\PhysicsTests.cpp",
+          "line": 98
+        },
+        {
+          "name": "JumpRisesThenLandsBackOnFloor",
+          "file": "C:\\Users\\vryen\\Desktop\\My Games\\Vulkan-Rendering\\Tests\\PhysicsTests.cpp",
+          "line": 108
+        },
+        {
+          "name": "BouncesOffFloorThenSettles",
+          "file": "C:\\Users\\vryen\\Desktop\\My Games\\Vulkan-Rendering\\Tests\\PhysicsTests.cpp",
+          "line": 121
+        }
+      ]
+    },
+    {
+      "name": "ModelLoading",
+      "tests": 7,
+      "testsuite": [
+        {
+          "name": "QuadSharesVerticesBetweenTriangles",
+          "file": "C:\\Users\\vryen\\Desktop\\My Games\\Vulkan-Rendering\\Tests\\ModelLoadingTests.cpp",
+          "line": 16
+        },
+        {
+          "name": "FlipsYAxisForVulkan",
+          "file": "C:\\Users\\vryen\\Desktop\\My Games\\Vulkan-Rendering\\Tests\\ModelLoadingTests.cpp",
+          "line": 26
+        },
+        {
+          "name": "ReadsVertexAttributes",
+          "file": "C:\\Users\\vryen\\Desktop\\My Games\\Vulkan-Rendering\\Tests\\ModelLoadingTests.cpp",
+          "line": 35
+        },
+        {
+          "name": "CollisionTrianglesFollowIndexBuffer",
+          "file": "C:\\Users\\vryen\\Desktop\\My Games\\Vulkan-Rendering\\Tests\\ModelLoadingTests.cpp",
+          "line": 47
+        },
+        {
+          "name": "CubeKeepsCornersWithDifferentNormalsSeparate",
+          "file": "C:\\Users\\vryen\\Desktop\\My Games\\Vulkan-Rendering\\Tests\\ModelLoadingTests.cpp",
+          "line": 59
+        },
+        {
+          "name": "JsonSetsTransformAndLoadsMesh",
+          "file": "C:\\Users\\vryen\\Desktop\\My Games\\Vulkan-Rendering\\Tests\\ModelLoadingTests.cpp",
+          "line": 70
+        },
+        {
+          "name": "MissingFileThrows",
+          "file": "C:\\Users\\vryen\\Desktop\\My Games\\Vulkan-Rendering\\Tests\\ModelLoadingTests.cpp",
+          "line": 80
+        }
+      ]
+    },
+    {
+      "name": "HashCombine",
+      "tests": 3,
+      "testsuite": [
+        {
+          "name": "SameValuesGiveSameHash",
+          "file": "C:\\Users\\vryen\\Desktop\\My Games\\Vulkan-Rendering\\Tests\\UtilsTests.cpp",
+          "line": 19
+        },
+        {
+          "name": "DifferentValuesGiveDifferentHashes",
+          "file": "C:\\Users\\vryen\\Desktop\\My Games\\Vulkan-Rendering\\Tests\\UtilsTests.cpp",
+          "line": 24
+        },
+        {
+          "name": "OrderOfValuesMatters",
+          "file": "C:\\Users\\vryen\\Desktop\\My Games\\Vulkan-Rendering\\Tests\\UtilsTests.cpp",
+          "line": 29
+        }
+      ]
+    },
+    {
+      "name": "Rotations\/CameraViewInverse",
+      "tests": 5,
+      "testsuite": [
+        {
+          "name": "ViewIsInverseOfCameraTransform\/None",
+          "value_param": "None",
+          "file": "C:\\Users\\vryen\\Desktop\\My Games\\Vulkan-Rendering\\Tests\\CameraTests.cpp",
+          "line": 156
+        },
+        {
+          "name": "ViewIsInverseOfCameraTransform\/YawOnly",
+          "value_param": "YawOnly",
+          "file": "C:\\Users\\vryen\\Desktop\\My Games\\Vulkan-Rendering\\Tests\\CameraTests.cpp",
+          "line": 156
+        },
+        {
+          "name": "ViewIsInverseOfCameraTransform\/PitchOnly",
+          "value_param": "PitchOnly",
+          "file": "C:\\Users\\vryen\\Desktop\\My Games\\Vulkan-Rendering\\Tests\\CameraTests.cpp",
+          "line": 156
+        },
+        {
+          "name": "ViewIsInverseOfCameraTransform\/RollOnly",
+          "value_param": "RollOnly",
+          "file": "C:\\Users\\vryen\\Desktop\\My Games\\Vulkan-Rendering\\Tests\\CameraTests.cpp",
+          "line": 156
+        },
+        {
+          "name": "ViewIsInverseOfCameraTransform\/AllAxes",
+          "value_param": "AllAxes",
+          "file": "C:\\Users\\vryen\\Desktop\\My Games\\Vulkan-Rendering\\Tests\\CameraTests.cpp",
+          "line": 156
+        }
+      ]
+    }
+  ]
+}
